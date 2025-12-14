@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import PodcastGrid from "../components/PodcastGrid";
+import PodcastGrid from "./components/PodcastGrid";
 import { genres } from "./data";
-import { fetchPodcasts } from "../api/fetchPodcasts";
-import Header from "../components/Header";
+import { fetchPodcasts } from "./api/fetchPodcasts";
+import Header from "./components/Header";
+import { PodcastProvider } from "./context/PodcastContext";
+import SearchBar from "./components/SearchBar";
 
 /**
  * App - The root component of the Podcast Explorer application. It handles:
@@ -23,7 +25,6 @@ export default function App() {
 
   return (
     <>
-      <Header />
       <main>
         {loading && (
           <div className="message-container">
@@ -41,7 +42,10 @@ export default function App() {
         )}
 
         {!loading && !error && (
-          <PodcastGrid podcasts={podcasts} genres={genres} />
+          <PodcastProvider initialPodcasts={podcasts}>
+            <Header />
+            <PodcastGrid podcasts={podcasts} genres={genres} />
+          </PodcastProvider>
         )}
       </main>
     </>

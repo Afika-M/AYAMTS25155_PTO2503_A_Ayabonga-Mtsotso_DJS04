@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import PodcastCard from "./PodcastCard";
+import { PodcastContext } from "../context/PodcastContext";
 
 /**
  * Displays a grid layout of podcast preview cards. Each card includes
@@ -11,7 +13,9 @@ import PodcastCard from "./PodcastCard";
  * @returns {JSX.Element} The rendered grid of podcast cards.
  *
  */
-export default function PodcastGrid({ podcasts, genres }) {
+export default function PodcastGrid({ genres }) {
+  const { podcasts } = useContext(PodcastContext);
+
   return (
     <div className="grid">
       {podcasts.map((podcast) => (
