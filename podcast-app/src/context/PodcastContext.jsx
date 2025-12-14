@@ -15,6 +15,7 @@ export const PodcastContext = createContext();
 export function PodcastProvider({ children, initialPodcasts }) {
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("all");
+  const [sortKey, setSortKey] = useState("date-desc");
 
   const applyFilters = () => {
     let data = [...initialPodcasts];
@@ -28,6 +29,23 @@ export function PodcastProvider({ children, initialPodcasts }) {
       data = data.filter((p) => p.genres.includes(Number(genre)));
     }
 
+    switch (sortKey) {
+      case "title-asc":
+        data.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "title-desc":
+        data.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      case "date-asc":
+        data.sort((a, b) => new Date(a.updated) - new Date(b.updated));
+        break;
+      case "date-desc":
+        data.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+        break;
+      default:
+        break;
+    }
+
     return data;
   };
 
@@ -38,6 +56,8 @@ export function PodcastProvider({ children, initialPodcasts }) {
     setSearch,
     genre,
     setGenre,
+    sortKey,
+    setSortKey,
     podcasts,
     allPodcastsCount: podcasts.length,
   };

@@ -1,5 +1,9 @@
 import { useContext } from "react";
 import { PodcastContext } from "../context/PodcastContext";
+/**
+ *
+ *
+ */
 
 export default function GenreFilter({ genres }) {
   const { genre, setGenre } = useContext(PodcastContext);
@@ -9,7 +13,7 @@ export default function GenreFilter({ genres }) {
       <option value="all">All Genres</option>
       {genres.map((g) => (
         <option key={g.id} value={g.id}>
-          {g.name}
+          {g.title}
         </option>
       ))}
     </select>
