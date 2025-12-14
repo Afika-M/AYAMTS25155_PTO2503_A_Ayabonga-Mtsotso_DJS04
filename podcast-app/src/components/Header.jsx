@@ -5,8 +5,8 @@ import Sort from "./Sort";
 export default function Header({ genres }) {
   return (
     <header className="app-header">
-      <h1>🎙️ Podcast App</h1>
-      <div>
+      <h1 className="app-title">🎙️ Podcast App</h1>
+      <div className="header-controls">
         <SearchBar />
         <GenreFilter genres={genres} />
         <Sort />

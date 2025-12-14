@@ -4,6 +4,8 @@ import { genres } from "./data";
 import { fetchPodcasts } from "./api/fetchPodcasts";
 import Header from "./components/Header";
 import { PodcastProvider } from "./context/PodcastContext";
+import PaginationControls from "./components/PaginationControls";
+
 /**
  * App - The root component of the Podcast Explorer application. It handles:
  * - Fetching podcast data from a remote API
@@ -43,6 +45,7 @@ export default function App() {
           <PodcastProvider initialPodcasts={podcasts}>
             <Header genres={genres} />
             <PodcastGrid genres={genres} />
+            <PaginationControls />
           </PodcastProvider>
         )}
       </main>

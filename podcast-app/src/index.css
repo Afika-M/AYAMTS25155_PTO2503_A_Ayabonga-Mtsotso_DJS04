@@ -16,6 +16,65 @@ body {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
+.app-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+}
+
+.header-controls select,
+.header-controls input {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  color: var(--grey-text);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.page-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--grey-text);
+  transition: background 0.2s, color 0.2s;
+}
+
+
+.page-btn:hover:not(:disabled) {
+  background: #4a90e2;
+  color: #fff;
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-btn.active {
+  background: #4a90e2;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+
 .grid {
   display: grid;
   gap: 1rem;
