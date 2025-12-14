@@ -14,19 +14,30 @@ export const PodcastContext = createContext();
 
 export function PodcastProvider({ children, initialPodcasts }) {
   const [search, setSearch] = useState("");
+  const [genre, setGenre] = useState("all");
 
-  // Apply search filter only
-  const applySearch = () => {
-    if (!search.trim()) return initialPodcasts;
-    const q = search.toLowerCase();
-    return initialPodcasts.filter((p) => p.title.toLowerCase().includes(q));
+  const applyFilters = () => {
+    let data = [...initialPodcasts];
+
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      data = data.filter((p) => p.title.toLowerCase().includes(q));
+    }
+
+    if (genre !== "all") {
+      data = data.filter((p) => p.genres.includes(Number(genre)));
+    }
+
+    return data;
   };
 
-  const podcasts = applySearch();
+  const podcasts = applyFilters();
 
   const value = {
     search,
     setSearch,
+    genre,
+    setGenre,
     podcasts,
     allPodcastsCount: podcasts.length,
   };
